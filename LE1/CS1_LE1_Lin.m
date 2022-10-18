@@ -104,9 +104,8 @@ k = -1;
 A_controlled_altitude = A_altitude - k*B_altitude*C_altitude;
 sys_altitude = ss(A_controlled_altitude, [], C_altitude, []);
 subplot(2,2,1)
-[y, t] = initial(sys_altitude, x0);
+[y, t] = initial(sys_altitude, x0, 20);
 plot(t,y, 'linewidth',2)
-xlim([0,10])
 title("k=-1: Divergence", 'Fontsize',16)
 xlabel("Time(seconds)", 'FontSize',14)
 ylabel("Amplitude", 'FontSize',14)
@@ -116,7 +115,7 @@ k = 0;
 A_controlled_altitude = A_altitude - k*B_altitude*C_altitude;
 sys_altitude = ss(A_controlled_altitude, [], C_altitude, []);
 subplot(2,2,2)
-[y,t]=initial(sys_altitude, x0);
+[y,t]=initial(sys_altitude, x0, 1);
 plot(t,y, 'linewidth', 2)
 title("k=0: Converge to non-zero(-1)", 'Fontsize',16)
 xlabel("Time(seconds)", 'FontSize',14)
@@ -127,9 +126,8 @@ k = 0.0001;
 A_controlled_altitude = A_altitude - k*B_altitude*C_altitude;
 sys_altitude = ss(A_controlled_altitude, [], C_altitude, []);
 subplot(2,2,3)
-[y,t]=initial(sys_altitude, x0);
+[y,t]=initial(sys_altitude, x0, 300);
 plot(t,y, 'linewidth', 2)
-xlim([0,250])
 title("k=0.0001: Converge to zero without oscillation", 'Fontsize',16)
 xlabel("Time(seconds)", 'FontSize',14)
 ylabel("Amplitude", 'FontSize',14)
@@ -139,9 +137,8 @@ k = 0.01;
 A_controlled_altitude = A_altitude - k*B_altitude*C_altitude;
 sys_altitude = ss(A_controlled_altitude, [], C_altitude, []);
 subplot(2,2,4)
-[y,t]=initial(sys_altitude, x0);
+[y,t]=initial(sys_altitude, x0, 200);
 plot(t,y,'linewidth',2)
-xlim([0,80])
 title("k=0.01: Converge to zero with oscillation", 'Fontsize',16)
 xlabel("Time(seconds)", 'FontSize',14)
 ylabel("Amplitude", 'FontSize',14)

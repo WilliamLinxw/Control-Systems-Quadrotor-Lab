@@ -7,6 +7,8 @@ margin(G_CF)
 
 margin(K*G_CF)
 
+nyqlog(K*G_CF)
+
 step(feedback(K*G_CF,1),500)
 
 %% Cascade Control

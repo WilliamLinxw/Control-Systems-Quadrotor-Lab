@@ -1,13 +1,13 @@
 %% Lead Compensator
 G_CF = tf(9.81, [1 2/3 0 0]);
 
-K = tf([40/6000 1/6000], [2 1]);
+K = tf([40/10000 1/10000], [40*0.15 1]);
 
 margin(G_CF)
 
 margin(K*G_CF)
 
-step(feedback(K*G_CF,1))
+step(feedback(K*G_CF,1),500)
 
 %% Cascade Control
 g_theta = tf(1,[1 0]);
@@ -18,7 +18,7 @@ G_no_theta = tf(9.81, [1 2/3 0]);
 G_out = tf_theta * G_no_theta;
 
 % Crossover @>=4rad/s
-K1 = tf([1 1],[1*(7-4*sqrt(3)) 1]);
+K1 = tf([1 1],[1*(0.1) 1]);
 % bode(K1*G_out);
 % step(feedback(K1*G_out,1));
 % stepinfo(feedback(K1*G_out,1));
@@ -29,15 +29,16 @@ K2 = tf([sqrt(3)/20 1/20],[1/3*sqrt(3) 1]);
 % bode(K2*G_out);
 % step(feedback(K2*G_out,1));
 % stepinfo(feedback(K1*G_out,1));
+
 margin(K1*G_out)
 hold on
 margin(K2*G_out)
 hold off
-title("Phase Margin_1=14.2^{\circ}, w_{c1}=5.89rad/s       Phase Margin_2=62.9^{\circ}, w_{c2}=0.729rad/s")
+title("Phase Margin_1=8.46^{\circ}, w_{c1}=5.68rad/s       Phase Margin_2=62.9^{\circ}, w_{c2}=0.729rad/s")
 
-step(feedback(K1*G_out,1));
+step(feedback(K1*G_out,1),20);
 hold on
-step(feedback(K2*G_out,1));
+step(feedback(K2*G_out,1),20);
 legend('K_{out,1}','K_{out,2}')
 
 stepinfo(feedback(K*G_CF,1))

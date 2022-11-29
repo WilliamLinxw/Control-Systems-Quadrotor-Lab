@@ -35,6 +35,7 @@ hold on
 margin(K2*G_out)
 hold off
 title("Phase Margin_1=8.46^{\circ}, w_{c1}=5.68rad/s       Phase Margin_2=62.9^{\circ}, w_{c2}=0.729rad/s")
+legend('K_{out,1}','K_{out,2}')
 
 step(feedback(K1*G_out,1),20);
 hold on
